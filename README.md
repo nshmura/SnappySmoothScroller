@@ -31,7 +31,6 @@ layoutManager.setSnapType(SnapType.CENTER);
 // Set the Interpolator
 layoutManager.setSnapInterpolator(new DecelerateInterpolator());
 
-
 // Attach layout manager to the RecyclerView:
 recyclerView.setLayoutManager(layoutManager);
 ```
@@ -40,7 +39,6 @@ Call `smoothScrollToPosition(int)`:
 ```java
 recyclerView.smoothScrollToPosition(position);
 ```
-
 
 ## SnappyLayoutManager
 

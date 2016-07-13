@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.nshmura.snappysmoothscroller.demo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(keyStoreProperty)
+            keyAlias keyAliasProperty
+            storePassword keyStorePasswordProperty
+            keyPassword keyAliasPasswordProperty
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+def getKeyStoreProperty() {
+    return hasProperty('NSHMURA_KEYSTORE') ? NSHMURA_KEYSTORE : "debug.keystore"
+}
+
+def getKeyAliasProperty() {
+    return hasProperty('NSHMURA_KEYALIAS') ? NSHMURA_KEYALIAS : "android"
+}
+
+def getKeyStorePasswordProperty() {
+    return hasProperty('NSHMURA_KEYSTOREPASSWORD') ? NSHMURA_KEYSTOREPASSWORD : "androiddebugkey"
+}
+
+def getKeyAliasPasswordProperty() {
+    return hasProperty('NSHMURA_KEYALIASPASSWORD') ? NSHMURA_KEYALIASPASSWORD : "android"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile "com.android.support:recyclerview-v7:24.0.0"
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    compile project(":library")
+}

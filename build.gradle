@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.novoda:bintray-release:0.3.4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,4 +21,24 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    minSdkVersion = 9
+    compileSdkVersion = 24
+    targetSdkVersion = compileSdkVersion
+    buildToolsVersion = '24.0.0'
+    javaVersion = JavaVersion.VERSION_1_7
+    supportLibraryVersion = '24.0.0'
+    versionCode = 1
+    versionName = "1.0.0"
+
+    POM_DEVELOPER_ID = "nshmura"
+    POM_GROUP = "com.nshmura"
+    POM_VERSION_NAME = versionName
+    POM_URL = "https://github.com/nshmura/SnappySmoothScroller"
+
+    POM_ARTIFACT_ID = "snappysmoothscroller"
+    POM_ARTIFACT_NAME = "SnappySmoothScroller"
+    POM_DESCRIPTION = ""
 }

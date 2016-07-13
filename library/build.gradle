@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+}
+
+publish {
+    userOrg = rootProject.ext.POM_DEVELOPER_ID
+    groupId = rootProject.ext.POM_GROUP
+    artifactId = rootProject.ext.POM_ARTIFACT_ID
+    uploadName = rootProject.ext.POM_ARTIFACT_NAME
+    publishVersion = rootProject.ext.POM_VERSION_NAME
+    desc = rootProject.ext.POM_DESCRIPTION
+    website = rootProject.ext.POM_URL
+}

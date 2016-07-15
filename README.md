@@ -94,6 +94,8 @@ layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,
 recyclerView.setLayoutManager(layoutManager);
 ```
 
+## Thanks
+[ Customizing SmoothScroller for the RecyclerView](https://mcochin.wordpress.com/2015/05/13/android-customizing-smoothscroller-for-the-recyclerview/)
 
 ## License
 ```

@@ -14,10 +14,12 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(keyStoreProperty)
-            keyAlias keyAliasProperty
-            storePassword keyStorePasswordProperty
-            keyPassword keyAliasPasswordProperty
+            if (hasProperty('NSHMURA_KEYSTORE')) {
+                storeFile file(NSHMURA_KEYSTORE)
+                keyAlias NSHMURA_KEYALIAS
+                storePassword NSHMURA_KEYSTOREPASSWORD
+                keyPassword NSHMURA_KEYALIASPASSWORD
+            }
         }
     }
 
@@ -25,25 +27,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            if (hasProperty('NSHMURA_KEYSTORE')) {
+                signingConfig signingConfigs.release
+            }
         }
     }
-}
-
-def getKeyStoreProperty() {
-    return hasProperty('NSHMURA_KEYSTORE') ? NSHMURA_KEYSTORE : "debug.keystore"
-}
-
-def getKeyAliasProperty() {
-    return hasProperty('NSHMURA_KEYALIAS') ? NSHMURA_KEYALIAS : "android"
-}
-
-def getKeyStorePasswordProperty() {
-    return hasProperty('NSHMURA_KEYSTOREPASSWORD') ? NSHMURA_KEYSTOREPASSWORD : "androiddebugkey"
-}
-
-def getKeyAliasPasswordProperty() {
-    return hasProperty('NSHMURA_KEYALIASPASSWORD') ? NSHMURA_KEYALIASPASSWORD : "android"
 }
 
 dependencies {
